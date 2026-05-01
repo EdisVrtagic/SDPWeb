@@ -1,0 +1,59 @@
+﻿body {
+    background: var(--color-body);
+}
+.card {
+    background-color: var(--color-box) !important;
+    border-color: rgba(255, 255, 255, 0.1);
+}
+.form-control {
+    background-color: var(--color-box) !important;
+    color: var(--color-white);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+}
+.form-control:focus {
+    background-color: var(--color-box) !important;
+    color: var(--color-white);
+}
+.table {
+    background-color: var(--color-box) !important;
+    color: inherit;
+}
+.table-light, .table-light > th, .table-light > td {
+    background-color: rgba(255, 255, 255, 0.05) !important;
+    color: var(--color-white);
+}
+.card-header.bg-light, .card-header.bg-dark {
+    background-color: rgba(255, 255, 255, 0.1) !important;
+    color: var(--color-white) !important;
+}
+input[type="date"]::-webkit-calendar-picker-indicator {
+    filter: invert(1);
+}
+.table thead th {
+    background-color: rgba(255, 255, 255, 0.05) !important;
+    color: var(--color-white) !important;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1) !important;
+}
+.table tbody td {
+    background-color: var(--color-box) !important;
+    color: rgba(255, 255, 255, 0.7) !important;
+    border-color: rgba(255, 255, 255, 0.05) !important;
+}
+.table-hover tbody tr:hover td {
+    background-color: rgba(255, 255, 255, 0.02) !important;
+    color: var(--color-white) !important;
+}
+#validationAlert {
+    background-color: rgba(217, 18, 20, .3) !important;
+    border: none !important;
+    color: #ff6b6b;
+}
+#hintMessage {
+    background-color: var(--color-box) !important;
+}
+.text-secondary{
+    color: var(--color-white) !important;
+}
+.text-primary{
+    color: var(--color-white) !important;
+}

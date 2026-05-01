@@ -1,0 +1,217 @@
+﻿body {
+    background: var(--color-body);
+}
+.dashboard-container {
+    position: relative;
+    max-width: 1300px;
+    width: 100%;
+    padding: 130px 15px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin: 0 auto;
+}
+.container{
+    padding: 0;
+}
+.custom-card {
+    background: var(--color-box);
+    border-radius: 20px;
+    padding: 15px;
+    border: 1px solid var(--color-body);
+    display: flex;
+    flex-direction: column;
+    min-height: 280px;
+    position: relative;
+    transition: all 0.3s ease;
+}
+.custom-card:hover {
+    border-color: rgba(255, 255, 255, 0.1);
+}
+.c-card-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    padding-bottom: 12px;
+    margin-bottom: 5px;
+}
+.c-badge {
+    padding: 4px 12px;
+    border-radius: 6px;
+    font-size: 10px;
+    font-weight: 800;
+    text-transform: uppercase;
+    line-height: 1.5;
+}
+.status-uploaded {
+    background-color: var(--color-upltot);
+}
+.status-valid {
+    background: var(--color-valid);
+}
+.status-review {
+    background: var(--color-review);
+}
+.status-error {
+    background: var(--color-reject);
+}
+.c-type {
+    font-size: 11px;
+    font-weight: 700;
+    text-transform: uppercase;
+}
+.c-filename {
+    font-size: 16px;
+    font-weight: 700;
+    margin-top: 5px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+.c-info-box {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    margin-top: auto;
+    padding-top: 20px;
+}
+.c-dates-row {
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+}
+.c-total-row {
+    padding-top: 12px;
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
+}
+.c-label {
+    font-size: 10px;
+    text-transform: uppercase;
+    display: block;
+    margin-bottom: 2px;
+}
+.c-value {
+    font-size: 14px;
+    font-weight: 600;
+}
+.c-amount {
+    font-size: 20px;
+}
+.c-footer {
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
+    padding-top: 15px;
+    margin-top: 15px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+.c-file-type {
+    font-size: 11px;
+    color: var(--text-dim);
+    font-weight: 700;
+}
+.btn-details-custom {
+    width: 100%;
+    background-color: rgba(255,255,255,0.1);
+    color: var(--color-white);
+    text-align: center;
+    text-decoration: none;
+    padding: 6px 16px;
+    border-radius: 8px;
+    font-size: 13px;
+    font-weight: 600;
+    transition: 0.2s;
+}
+.btn-details-custom:hover {
+    background-color: rgba(255,255,255,0.07);
+}
+.btn-upload-custom {
+    background-color: var(--color-box);
+    border: none;
+    padding: 8px 20px;
+    border-radius: 8px;
+    font-size: 14px;
+    font-weight: 500;
+}
+.statsSwiper {
+    padding: 10px 0 30px 0;
+}
+.stat-card {
+    background: var(--color-box);
+    padding: 20px;
+    border-radius: 16px;
+    border: 1px solid var(--color-body);
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    transition: all 0.3s ease;
+    min-height: 95px;
+}
+.stat-card:hover {
+    border-color: rgba(255, 255, 255, 0.1);
+}
+.stat-icon {
+    width: 38px;
+    height: 38px;
+    border-radius: 12px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 20px;
+    flex-shrink: 0;
+}
+.icon-total {
+    background: rgba(59, 130, 246, 1);
+}
+.icon-valid {
+    background: var(--color-valid);
+}
+.icon-review {
+    background: var(--color-review);
+}
+.icon-rejected {
+    background: var(--color-reject);
+}
+.stat-info {
+    display: flex;
+    flex-direction: column;
+}
+.stat-label {
+    font-size: 10.5px;
+    text-transform: uppercase;
+    font-weight: 700;
+    letter-spacing: 0.5px;
+    margin-bottom: 2px;
+}
+.stat-value {
+    font-size: 24px;
+    font-weight: 700;
+    margin: 0;
+    line-height: 1;
+}
+.status-uploaded {
+    background: var(--color-upltot);
+}
+.mySwiper, .statsSwiper {
+    padding-bottom: 50px !important;
+    position: relative;
+}
+.mySwiper .swiper-pagination, .statsSwiper .swiper-pagination {
+    position: absolute;
+    bottom: 0 !important;
+    left: 0;
+    width: 100%;
+}
+.mySwiper .swiper-pagination-bullet, .statsSwiper .swiper-pagination-bullet {
+    background: rgba(255, 255, 255, 0.8);
+    width: 10px;
+    height: 10px;
+    margin: 0 5px !important;
+    transition: all 0.3s ease;
+}
+.mySwiper .swiper-pagination-bullet-active, .statsSwiper .swiper-pagination-bullet-active {
+    background: var(--color-white) !important;
+    width: 25px;
+    border-radius: 5px;
+}

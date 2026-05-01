@@ -1,0 +1,144 @@
+﻿@model IEnumerable<SDPWebApp.Models.Document>
+
+@{
+    ViewData["Title"] = "Dashboard";
+}
+<head>
+    <link rel="stylesheet" type="text/css" href="~/css/sdpheader.css" />
+    <link rel="stylesheet" type="text/css" href="~/css/sdpmain.css" />
+</head>
+<header>
+    <div class="header-wrapper">
+        <div class="left-side">
+            <div class="logo-container">
+                <img src="/icons/ready.png" alt="SDPLogo" style="width: 30px; height: auto;" />
+            </div>
+            <nav>
+                <a href="#dash">Dashboard</a>
+                <a href="#do">Documents</a>
+            </nav>
+        </div>
+        <div class="right-side">
+            <button class="ver-button">Version 0.1.0</button>
+        </div>
+    </div>
+</header>
+<div class="dashboard-container" id="dash">
+    <div class="container">
+        <h2 class="dsh">Dashboard</h2>
+        <div class="swiper statsSwiper mb-5">
+            <div class="swiper-wrapper">
+                <div class="swiper-slide">
+                    <div class="stat-card">
+                        <div class="stat-icon icon-total"><i class='bx bx-file'></i></div>
+                        <div class="stat-info">
+                            <span class="stat-label">Total</span>
+                            <h3 class="stat-value">@ViewBag.TotalCount</h3>
+                        </div>
+                    </div>
+                </div>
+                <div class="swiper-slide">
+                    <div class="stat-card">
+                        <div class="stat-icon icon-total"><i class='bx bx-cloud-upload'></i></div>
+                        <div class="stat-info">
+                            <span class="stat-label">Uploaded</span>
+                            <h3 class="stat-value">@ViewBag.UploadedCount</h3>
+                        </div>
+                    </div>
+                </div>
+                <div class="swiper-slide">
+                    <div class="stat-card">
+                        <div class="stat-icon icon-valid"><i class='bx bx-check-circle'></i></div>
+                        <div class="stat-info">
+                            <span class="stat-label">Validated</span>
+                            <h3 class="stat-value">@ViewBag.ValidatedCount</h3>
+                        </div>
+                    </div>
+                </div>
+                <div class="swiper-slide">
+                    <div class="stat-card">
+                        <div class="stat-icon icon-review"><i class='bx bx-alarm-exclamation' ></i></div>
+                        <div class="stat-info">
+                            <span class="stat-label">Needs Review</span>
+                            <h3 class="stat-value">@ViewBag.ReviewCount</h3>
+                        </div>
+                    </div>
+                </div>
+                <div class="swiper-slide">
+                    <div class="stat-card">
+                        <div class="stat-icon icon-rejected"><i class='bx bx-x-circle'></i></div>
+                        <div class="stat-info">
+                            <span class="stat-label">Rejected</span>
+                            <h3 class="stat-value">@ViewBag.RejectedCount</h3>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="swiper-pagination mt-4"></div>
+        </div>
+        <div class="d-flex justify-content-between align-items-center mb-4">
+            <h2 class="text-white fw-bold m-0">Documents</h2>
+            
+            <form asp-action="Upload" method="post" enctype="multipart/form-data" id="uploadForm">
+                <input type="file" name="file" id="fileInput" style="display: none;" onchange="autoUpload()" required />
+                <button type="button" class="btn-upload-custom" onclick="document.getElementById('fileInput').click()">
+                    <i class="bi bi-cloud-arrow-up"></i> Add a document
+                </button>
+            </form>
+        </div>
+        @if (TempData["Success"] != null) { <div class="alert alert-success">@TempData["Success"]</div> }
+        @if (TempData["Error"] != null) { <div class="alert alert-danger">@TempData["Error"]</div> }
+        <div class="swiper mySwiper" id="do">
+            <div class="swiper-wrapper">
+                @foreach (var item in Model)
+                {
+                    <div class="swiper-slide">
+                        <div class="custom-card">
+                            <div class="c-card-header">
+                                <span class="c-type">@item.Type</span>
+                                <div class="c-badge @(item.Status switch {
+                                    DocumentStatus.Uploaded => "status-uploaded",
+                                    DocumentStatus.Validated => "status-valid",
+                                    DocumentStatus.NeedsReview => "status-review",
+                                    DocumentStatus.Rejected => "status-error",
+                                    _ => "status-valid"
+                                })">
+                                    @item.Status
+                                </div>
+                            </div>
+                            <div class="c-card-top">
+                                <div class="c-filename" title="@item.FileName">@item.FileName</div>
+                            </div>
+                            <div class="c-info-box">
+                                <div class="c-dates-row">
+                                    <div class="c-date-group">
+                                        <span class="c-label">Issue Date</span>
+                                        <span class="c-value">@item.UploadedAt.ToString("dd.MM.yyyy")</span>
+                                    </div>
+                                    <div class="c-date-group text-end">
+                                        <span class="c-label">Due Date</span>
+                                        <span class="c-value">@(item.DueDate.HasValue ? item.DueDate.Value.ToString("dd.MM.yyyy") : "---")</span>
+                                    </div>
+                                </div>
+                                <div class="c-total-row">
+                                    <span class="c-label">Total</span>
+                                    <span class="c-value c-amount">
+                                        @item.TotalAmount.ToString("N2") @item.Currency
+                                    </span>
+                                </div>
+                            </div>
+                            <div class="c-footer">
+                                <a asp-action="Details" asp-route-id="@item.Id" class="btn-details-custom">
+                                    Details <i class="bi bi-arrow-right-short"></i>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                }
+            </div>
+            <div class="swiper-pagination mt-4"></div>
+        </div>
+    </div>
+</div>
+<script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
+<script src="/js/SwScript.js" asp-append-version="true"></script>
